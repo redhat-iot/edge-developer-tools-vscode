@@ -27,7 +27,8 @@
 		"commands": [
 			{
 				"command": "edge-developer-tools.helloWorld",
-				"title": "Hello World"
+				"title": "",
+				"category": "IoTCLI"
 			}
 		],
 		"views": {
