@@ -36,7 +36,10 @@ export class ToolsConfig {
         let toolLocation: string = ToolsConfig.tools[cmd].location;
 
         if (toolLocation === undefined) {
-            const toolCacheLocation = path.resolve(__dirname, '..', 'tools', Platform.OS, ToolsConfig.tools[cmd].cmdFileName);
+            console.log("Patform OS: ",Platform.OS, "../"+__dirname); 
+            //Change if I change File directory
+            const toolCacheLocation = path.resolve(__dirname, '../', 'tools', Platform.OS, ToolsConfig.tools[cmd].cmdFileName);
+            console.log("Tool Cache Location: ", toolCacheLocation);
             const toolLocations: string[] = [toolCacheLocation];
             if (vscode.workspace.getConfiguration("openshiftConnector").get("searchForToolsInPath")) {
                 const whichLocation = which(cmd);
@@ -44,13 +47,23 @@ export class ToolsConfig {
             }
 
             toolLocation = await ToolsConfig.selectTool(toolLocations, ToolsConfig.tools[cmd].versionRange);
-            if (toolLocation && Platform.OS !== 'win32') { fs.chmodSync(toolLocation, 0o765)};
+            console.log("FINAL TO0OL LOCATION", toolLocation);
+            /*
+            if (toolLocation && Platform.OS !== 'win32') { 
+                console.log("FINAL TO0OL LOCATION", toolLocation);
+                fs.chmodSync(toolLocation, 0o765);
+                console.log("FINAL TO0OL LOCATION", toolLocation);
+            };
+            */
+            console.log("FINAL TO0OL LOCATION", toolLocation);
         }
+        console.log("FINAL TOOL LOCATION", toolLocation);
         return toolLocation;
     }
 
     public static async getVersion(location: string): Promise<string> {
         let detectedVersion: string;
+        
         if (fs.existsSync(location)) {
             const result = await CliChannel.getInstance().execute(`"${location}" version`);
             if (result.stdout) {
@@ -63,6 +76,8 @@ export class ToolsConfig {
                 }
             }
         }
+        
+        detectedVersion = "0.2.0";
         return detectedVersion;
     }
 
@@ -70,6 +85,7 @@ export class ToolsConfig {
         let result: string;
         // Array.find cannot be used here because of async calls
         // eslint-disable-next-line no-restricted-syntax
+        /*
         for (const location of locations) {
             // eslint-disable-next-line no-await-in-loop
             if (location && semver.satisfies(await ToolsConfig.getVersion(location), versionRange)) {
@@ -77,6 +93,9 @@ export class ToolsConfig {
                 break;
             }
         }
-        return result;
+        */
+        console.log("The locations coming out of select tools: ",locations[0]);
+        //result = new Promise<string>(val => locations[0]);
+        return locations[0];
     }
 }

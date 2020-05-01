@@ -11,9 +11,29 @@
 	],
 	"activationEvents": [
 		"onCommand:edge-developer-tools.helloWorld",
-		"onView:edgeTools"
+		"onView:edgeTools", 
+		"onCommand:edgeDeveloperTools.ceph.setup",
+		"onCommand:edgeDeveloperTools.ceph.destroy", 
+		"onCommand:edgeDeveloperTools.ceph.secrets", 
+		"onCommand:edgeDeveloperTools.enmasse.destroy",
+		"onCommand:edgeDeveloperTools.enmasse setup",
+		"onCommand:edgeDeveloperTools.enmasse.IoT.addDevice", 
+		"onCommand:edgeDeveloperTools.enmasse.IoT.project", 
+		"onCommand:edgeDeveloperTools.kafka.bridge", 
+		"onCommand:edgeDeveloperTools.kafka.destroy", 
+		"onCommand:edgeDeveloperTools.kafka.setup", 
+		"onCommand:edgeDeveloperTools.knative.setup", 
+		"onCommand:edgeDeveloperTools.knative.destroy", 
+		"onCommand:edgeDeveloperTools.knative.service", 
+		"onCommand:edgeDeveloperTools.knative.service.destroy",
+		"onCommand:edgeDeveloperTools.knative.source", 
+		"onCommand:edgeDeveloperTools.knative.source.destroy", 
+		"onCommand:edgeDeveloperTools.login",
+		"onCommand:edgeDeveloperTools.tensorflowServing.setup", 
+		"onCommand:edgeDeveloperTools.tensorflowServing.destroy"
+
 	],
-	"main": "./out/extension.js",
+	"main": "./out/src/extension.js",
 	"contributes": {
 		"viewsContainers": {
 			"activitybar": [

@@ -5,7 +5,7 @@
         "name": "IoTCLI",
         "version": "0.2.0",
         "versionRange": "^0.1.0",
-        "versionRangeLabel": "version >= 0.2.0 and < 0.2.0",
+        "versionRangeLabel": "version >= 0.1.0 and < 0.3.0",
         "dlFileName": "IoTCLI",
         "filePrefix": "",
         "platform": {
