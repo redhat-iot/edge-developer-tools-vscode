@@ -3,7 +3,8 @@ import { ProviderResult, TreeItemCollapsibleState, window, Terminal, Uri, comman
 import * as cliInstance from './cli';
 import { WindowUtil } from './utils/windowUtils';
 import { ToolsConfig } from './tools';
-
+import { vsCommand } from './vscommand';
+import { opendir } from 'fs';
 
 export class Command{ 
 
@@ -31,19 +32,19 @@ export class Command{
         if (nameSpace === undefined){ 
             return 'IoTCLI enmasse setup'; 
         }else{
-            return 'IoTCLI enmasse setup -n ${nameSpace}';
+            return `IoTCLI enmasse setup -n ${nameSpace}`;
         }
     }
 
     static enmasseIoTAddDevice(messagingTenant:string,deviceID:string):string{ 
-        return 'IoTCLI enmasse IoT addDevice ${messagingTenant} ${deviceID'; 
+        return `IoTCLI enmasse IoT addDevice ${messagingTenant} ${deviceID}`; 
     }
 
     static enmasseIoTproject(nameSpace?:string):string{
         if(nameSpace === undefined){
             return 'IoTCLI enmasse IoT project'; 
         }else{ 
-            return 'IoTCLI enmasse IoT project -n ${nameSpace}'; 
+            return `IoTCLI enmasse IoT project -n ${nameSpace}`; 
         }    
     }
 
@@ -60,7 +61,7 @@ export class Command{
         if(nameSpace === undefined){
             return 'IoTCLI kafka destroy'; 
         }else{ 
-            return 'IoTCLI kafka destroy -n ${nameSpace}'; 
+            return `IoTCLI kafka destroy -n ${nameSpace}`; 
         }
     }
 
@@ -68,12 +69,12 @@ export class Command{
         if(nameSpace === undefined){
             return 'IoTCLI kafka bridge'; 
         }else{ 
-            return 'IoTCLI kafka bridge -n ${nameSpace}'; 
+            return `IoTCLI kafka bridge -n ${nameSpace}`; 
         }
     }
 
     static knativeSetup(status: string = 'false'):string{ 
-        return 'IoTCLI knative setup --status ${status}'; 
+        return `IoTCLI knative setup`; //--status=${status}`; 
     }
 
     static knativeDestroy():string{
@@ -81,26 +82,26 @@ export class Command{
     }
 
     static knativeService(serviceName:string, nameSpace:string = 'knative-eventing'):string{
-        return 'IoTCLI knative service ${serviceName} -n ${nameSpace}'; 
+        return `IoTCLI knative service ${serviceName} -n ${nameSpace}`; 
     }
 
     static knativeServiceDestroy(serviceName:string, nameSpace:string = 'knative-eventing'):string{
-        return 'IoTCLI knative service destroy ${serviceName} -n ${nameSpace}'; 
+        return `IoTCLI knative service destroy ${serviceName} -n ${nameSpace}`; 
     }
     static knativeSource(serviceName:string, nameSpace:string = 'knative-eventing'):string{
-        return 'IoTCLI knative source ${serviceName} -n ${nameSpace}'; 
+        return `IoTCLI knative source ${serviceName} -n ${nameSpace}`; 
     }
 
     static knativeSourceDestroy(serviceName:string, nameSpace:string = 'knative-eventing'):string{
-        return 'IoTCLI knative source destroy ${serviceName} -n ${nameSpace}'; 
+        return `IoTCLI knative source destroy ${serviceName} -n ${nameSpace}`; 
     }
 
     static tensorflowServingSetup(nameSpace:string = 'default'){
-        return 'IoTCLI tensorflowServing setup -n ${nameSpace}'; 
+        return `IoTCLI tensorflowServing setup -n ${nameSpace}`; 
     }
 
     static tensorflowServingDestroy(nameSpace:string = 'default'){
-        return 'IoTCLI tensorflowServing destroy -n ${nameSpace}'; 
+        return `IoTCLI tensorflowServing destroy -n ${nameSpace}`; 
     }
 
     static login():string{
@@ -111,7 +112,6 @@ export class Command{
 }   
 
 export interface IoTCLI {
-    openShiftLogin(): Promise<void>
     execute(command: string, cwd?: string, fail?: boolean): Promise<cliInstance.CliExitData>;
     //spawn(command: string, cwd?: string): Promise<ChildProcess>;
     executeInTerminal(command: string, cwd?: string, name?: string): Promise<void>;
@@ -120,19 +120,24 @@ export interface IoTCLI {
 
 export class IoTCLIImpl implements IoTCLI {
 
-    private static cli: cliInstance.Cli = cliInstance.CliChannel.getInstance();
+    public static cli: cliInstance.Cli = cliInstance.CliChannel.getInstance();
+    private static instance: IoTCLI;
 
-
-    public async openShiftLogin():Promise<void>{ 
-        return(this.executeInTerminal(Command.login(),process.cwd())); 
-
+    public static get Instance(): IoTCLI {
+        if (!IoTCLIImpl.instance) {
+            IoTCLIImpl.instance = new IoTCLIImpl();
+        }
+        return IoTCLIImpl.instance;
     }
+    
 
     public async executeInTerminal(command: string, cwd: string = process.cwd(), name = 'edgeDeveloperTools'): Promise<void> {
         const cmd = command.split(' ')[0];
         const toolLocation = await ToolsConfig.detect(cmd);
         const terminal: Terminal = WindowUtil.createTerminal(name, cwd);
+        console.log("Trying to execute with tool: ", cmd); 
         terminal.sendText(toolLocation === cmd ? command : command.replace(cmd, `"${toolLocation}"`).replace(new RegExp(`&& ${cmd}`, 'g'), `&& "${toolLocation}"`), true);
+        
         terminal.show();
     }
 
@@ -144,4 +149,9 @@ export class IoTCLIImpl implements IoTCLI {
             cwd ? {cwd} : { }
         ).then(async (result) => result.error && fail ?  Promise.reject(result.error) : result).catch((err) => fail ? Promise.reject(err) : Promise.resolve({error: null, stdout: '', stderr: ''}));
     }
+
 }
+
+export function getInstance(): IoTCLI {
+    return IoTCLIImpl.Instance;
+  }

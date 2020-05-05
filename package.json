@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:edge-developer-tools.helloWorld",
+		"onCommand:edgeDeveloperTools.helloWorld",
 		"onView:edgeTools", 
 		"onCommand:edgeDeveloperTools.ceph.setup",
 		"onCommand:edgeDeveloperTools.ceph.destroy", 
@@ -46,10 +46,21 @@
 		},
 		"commands": [
 			{
-				"command": "edge-developer-tools.helloWorld",
+				"command": "edgeDeveloperTools.helloWorld",
 				"title": "Say Hello",
-				"category": "IoTCLI"
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.login",
+				"title": "Login to Cluster",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.knative.setup",
+				"title": "Setup Knative",
+				"category": "EdgeDeveloperTools"
 			}
+
 		],
 		"views": {
 			"package-explorer": [

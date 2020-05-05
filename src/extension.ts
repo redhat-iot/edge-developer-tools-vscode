@@ -2,10 +2,11 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import {edgeToolsProvider} from './edgeTools';
-import {Setup} from './IoTCLI/setup';
+import {Setup} from './edgeDeveloperTools/setup';
+import { registerCommands} from './vscommand';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
@@ -17,7 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	const disposable = [
-	vscode.commands.registerCommand('edge-developer-tools.helloWorld', (contex) => Setup.helloworld()),
+	vscode.commands.registerCommand('edgeDeveloperTools.helloWorld', (contex) => Setup.helloworld()),
+	...await registerCommands(
+		`./edgeDeveloperTools/IoTCLIcommands`, 
+	),
 	];	
 
 	disposable.forEach((value) => context.subscriptions.push(value));
