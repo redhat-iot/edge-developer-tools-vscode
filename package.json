@@ -13,6 +13,7 @@
 		"onCommand:edgeDeveloperTools.helloWorld",
 		"onView:edgeTools", 
 		"onCommand:edgeDeveloperTools.ceph.setup",
+		"onCommand:edgeDeveloperTools.ceph.user",
 		"onCommand:edgeDeveloperTools.ceph.destroy", 
 		"onCommand:edgeDeveloperTools.ceph.secrets", 
 		"onCommand:edgeDeveloperTools.enmasse.destroy",
@@ -56,11 +57,85 @@
 				"category": "EdgeDeveloperTools"
 			}, 
 			{
+				"command": "edgeDeveloperTools.ceph.user",
+				"title": "Create a ceph user",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.ceph.secrets",
+				"title": "Get credentials for a Ceph User",
+				"category": "EdgeDeveloperTools"
+			}, 		
+			{
+				"command": "edgeDeveloperTools.enmasse.destroy",
+				"title": "Remove Enmasse Messaging core from cluster",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.enmasse.setup",
+				"title": "Setup Enmasse Messaging Core",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.enmasse.IoT.addDevice",
+				"title": "Add device to an Enmasse IoT Project",
+				"category": "EdgeDeveloperTools"
+			},
+			{
+				"command": "edgeDeveloperTools.enmasse.IoT.project",
+				"title": "Make new enmasse IoT project",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.kafka.setup",
+				"title": "Setup Kafka Messaging Core",
+				"category": "EdgeDeveloperTools"
+			},  
+			{
+				"command": "edgeDeveloperTools.kafka.destroy",
+				"title": "Remove kafka Messaging Core from cluster",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.knative.destroy",
+				"title": "Remove kafka Messaging Core from cluster",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
 				"command": "edgeDeveloperTools.knative.setup",
 				"title": "Setup Knative",
 				"category": "EdgeDeveloperTools"
+			},
+			{
+				"command": "edgeDeveloperTools.knative.service",
+				"title": "Deploy a knative service",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.knative.service.destroy",
+				"title": "Remove a knative service",
+				"category": "EdgeDeveloperTools"
+			},
+			{
+				"command": "edgeDeveloperTools.knative.source",
+				"title": "Deploy a knative source",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.knative.source.destroy",
+				"title": "Remove a knative source",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.tensorflowServing.setup",
+				"title": "Remove a knative source",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
+				"command": "edgeDeveloperTools.tensorflowServing.destroy",
+				"title": "Remove a knative source",
+				"category": "EdgeDeveloperTools"
 			}
-
 		],
 		"views": {
 			"package-explorer": [

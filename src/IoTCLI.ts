@@ -8,73 +8,53 @@ import { opendir } from 'fs';
 
 export class Command{ 
 
+    static cephUser(user: string){
+        return `IoTCLI ceph user ${user}`; 
+    }
+
     static cephSetup():string { 
         return 'IoTCLI ceph setup'; 
     }
 
-    static cephSecrets():string { 
-        return 'IoTCLI ceph secrets'; 
+    static cephSecrets(user: string):string { 
+        return `IoTCLI ceph secrets ${user}`; 
     }
 
     static cephDestroy():string { 
         return 'IoTCLI ceph destroy'; 
     }
     
-    static enmasseDestroy(nameSpace?: string):string{ 
-        if (nameSpace === undefined){ 
-            return 'IoTCLI enmasse destroy'; 
-        }else{
-            return 'IoTCLI enmasse destroy -n ${nameSpace}';
-        }
+    static enmasseDestroy(nameSpace: string = "enmasse-infra"):string{ 
+       return `IoTCLI enmasse destroy`;    
     }
 
-    static enmasseSetup(nameSpace?:string):string{ 
-        if (nameSpace === undefined){ 
-            return 'IoTCLI enmasse setup'; 
-        }else{
-            return `IoTCLI enmasse setup -n ${nameSpace}`;
-        }
+    static enmasseSetup(nameSpace: string = "enmasse-infra"):string{ 
+        return `IoTCLI enmasse setup -n ${nameSpace}`;
+    
     }
 
     static enmasseIoTAddDevice(messagingTenant:string,deviceID:string):string{ 
         return `IoTCLI enmasse IoT addDevice ${messagingTenant} ${deviceID}`; 
     }
 
-    static enmasseIoTproject(nameSpace?:string):string{
-        if(nameSpace === undefined){
-            return 'IoTCLI enmasse IoT project'; 
-        }else{ 
-            return `IoTCLI enmasse IoT project -n ${nameSpace}`; 
-        }    
+    static enmasseIoTproject(nameSpace: string = "myapp"):string{
+        return `IoTCLI enmasse IoT project -n ${nameSpace}`;        
     }
 
-    static kafkaSetup(nameSpace?:string):string{ 
-        if(nameSpace === undefined){
-            return 'IoTCLI kafka setup'; 
-        }else{ 
-            return 'IoTCLI kafka setup -n ${nameSpace}'; 
-        }
-        
+    static kafkaSetup(nameSpace: string = "kafka"):string{    
+        return `IoTCLI kafka setup -n ${nameSpace}`; 
     }
     
-    static kafkaDestroy(nameSpace?:string):string{ 
-        if(nameSpace === undefined){
-            return 'IoTCLI kafka destroy'; 
-        }else{ 
-            return `IoTCLI kafka destroy -n ${nameSpace}`; 
-        }
+    static kafkaDestroy(nameSpace: string = "kafka"):string{ 
+        return `IoTCLI kafka destroy -n ${nameSpace}`; 
     }
 
-    static kafkaBridge(nameSpace?:string):string{
-        if(nameSpace === undefined){
-            return 'IoTCLI kafka bridge'; 
-        }else{ 
-            return `IoTCLI kafka bridge -n ${nameSpace}`; 
-        }
+    static kafkaBridge(nameSpace: string = "kafka"):string{
+        return `IoTCLI kafka bridge -n ${nameSpace}`; 
     }
 
     static knativeSetup(status: string = 'false'):string{ 
-        return `IoTCLI knative setup`; //--status=${status}`; 
+        return `IoTCLI knative setup`; 
     }
 
     static knativeDestroy():string{
@@ -88,12 +68,12 @@ export class Command{
     static knativeServiceDestroy(serviceName:string, nameSpace:string = 'knative-eventing'):string{
         return `IoTCLI knative service destroy ${serviceName} -n ${nameSpace}`; 
     }
-    static knativeSource(serviceName:string, nameSpace:string = 'knative-eventing'):string{
-        return `IoTCLI knative source ${serviceName} -n ${nameSpace}`; 
+    static knativeSource(sourceName:string,sourceSink:string, nameSpace:string = 'knative-eventing'):string{
+        return `IoTCLI knative source ${sourceName} ${sourceSink} -n ${nameSpace}`; 
     }
 
-    static knativeSourceDestroy(serviceName:string, nameSpace:string = 'knative-eventing'):string{
-        return `IoTCLI knative source destroy ${serviceName} -n ${nameSpace}`; 
+    static knativeSourceDestroy(sourceName:string, nameSpace:string = 'knative-eventing'):string{
+        return `IoTCLI knative source destroy ${sourceName} -n ${nameSpace}`; 
     }
 
     static tensorflowServingSetup(nameSpace:string = 'default'){
