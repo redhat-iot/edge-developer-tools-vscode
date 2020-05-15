@@ -1,16 +1,14 @@
 # edge-developer-tools README
 
-This is the README for your extension "edge-developer-tools". After writing up a brief description, we recommend including the following sections.
+This Is the repository for Red Hat's Edge Developer tools created and maintained to make deploying edge centric applications and tools to a Openshift Cluster much easier. It wraps the functionality provided by the [IoTCLI](https://github.com/redhat-iot/iot-dev)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Currently this extension offers the same commands provided by the [IoTCLI](https://github.com/redhat-iot/iot-dev)
 
-For example if there is an image subfolder under your extension project workspace:
+It takes care of installing all the relevant tools needed, I.E [OC](https://github.com/openshift/oc) and the [IoTCLI](https://github.com/redhat-iot/iot-dev) 
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Stay Tuned for some awesome IoT and Edge Related status widgets
 
 ## Requirements
 

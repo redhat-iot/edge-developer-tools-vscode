@@ -3,22 +3,22 @@
         "description": "Red Hat IoTCLI tool",
         "vendor": "Red Hat, Inc.",
         "name": "IoTCLI",
-        "version": "0.2.2",
+        "version": "0.3.0",
         "versionRange": "^0.1.0",
-        "versionRangeLabel": "version >= 0.1.0 and < 0.3.0",
+        "versionRangeLabel": "version >= 0.1.0 and < 0.4.0",
         "dlFileName": "IoTCLI",
         "filePrefix": "",
         "platform": {
             "darwin": {
-                "url": "https://github.com/redhat-iot/iot-dev/releases/download/v0.2.2/IoTCLI_0.2.2_Darwin_x86_64.tar.gz",
-                "sha256sum": "abb518e7d9e98f771fc113a27f6bce5a8c6f9250c26cf863fee2287b9fc12246",
-                "dlFileName": "IoTCLI_0.2.2_Darwin_x86_64.tar.gz",
+                "url": "https://github.com/redhat-iot/iot-dev/releases/download/v0.3.0/IoTCLI_0.3.0_Darwin_x86_64.tar.gz",
+                "sha256sum": "8234edae0a9f5595e270507ba763a97d1bc13ccbe78d59ea7d60bd15b242a9e8",
+                "dlFileName": "IoTCLI_0.3.0_Darwin_x86_64.tar.gz",
                 "cmdFileName": "IoTCLI"
             },
             "linux": {
-                "url": "https://github.com/redhat-iot/iot-dev/releases/download/v0.2.2/IoTCLI_0.2.2_Linux_x86_64.tar.gz",
-                "sha256sum": "2128d3f78dd7a5e2fd6b5c867ce526d66fbdfc402115866a551a5f122fc2f6b8",
-                "dlFileName": "IoTCLI_0.2.2_Linux_x86_64.tar.gz",
+                "url": "https://github.com/redhat-iot/iot-dev/releases/download/v0.3.0/IoTCLI_0.3.0_Linux_x86_64.tar.gz",
+                "sha256sum": "7b104afefa2607865b8d057ffebec37273c2b0de36905dad88c1e1122282c0aa",
+                "dlFileName": "IoTCLI_0.3.0_Linux_x86_64.tar.gz",
                 "cmdFileName": "IoTCLI"
             }
         }

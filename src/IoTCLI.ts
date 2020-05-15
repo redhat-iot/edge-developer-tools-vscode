@@ -114,7 +114,13 @@ export class IoTCLIImpl implements IoTCLI {
     public async executeInTerminal(command: string, cwd: string = process.cwd(), name = 'edgeDeveloperTools'): Promise<void> {
         const cmd = command.split(' ')[0];
         const toolLocation = await ToolsConfig.detect(cmd);
-        const terminal: Terminal = WindowUtil.createTerminal(name, cwd);
+        let terminal: Terminal; 
+        if(window.activeTerminal === undefined){
+            terminal = WindowUtil.createTerminal(name, cwd);
+        }else{
+            terminal = window.activeTerminal; 
+        }
+
         console.log("Trying to execute with tool: ", cmd); 
         terminal.sendText(toolLocation === cmd ? command : command.replace(cmd, `"${toolLocation}"`).replace(new RegExp(`&& ${cmd}`, 'g'), `&& "${toolLocation}"`), true);
         
