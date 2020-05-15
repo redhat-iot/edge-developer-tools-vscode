@@ -1,4 +1,4 @@
-# edge-developer-tools README
+# edge-developer-tools
 
 This Is the repository for Red Hat's Edge Developer tools created and maintained to make deploying edge centric applications and tools to a Openshift Cluster much easier. It wraps the functionality provided by the [IoTCLI](https://github.com/redhat-iot/iot-dev)
 
