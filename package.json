@@ -25,7 +25,8 @@
 		"onCommand:edgeDeveloperTools.kafka.setup", 
 		"onCommand:edgeDeveloperTools.knative.setup", 
 		"onCommand:edgeDeveloperTools.knative.destroy", 
-		"onCommand:edgeDeveloperTools.knative.service", 
+		"onCommand:edgeDeveloperTools.knative.service",
+		"onCommand:edgeDeveloperTools.knative.service.status",
 		"onCommand:edgeDeveloperTools.knative.service.destroy",
 		"onCommand:edgeDeveloperTools.knative.source", 
 		"onCommand:edgeDeveloperTools.knative.source.destroy", 
@@ -65,7 +66,12 @@
 				"command": "edgeDeveloperTools.ceph.secrets",
 				"title": "Get credentials for a Ceph User",
 				"category": "EdgeDeveloperTools"
-			}, 		
+			},
+			{
+				"command": "edgeDeveloperTools.ceph.setup",
+				"title": "Setup Ceph Object Storage",
+				"category": "EdgeDeveloperTools"
+			}, 		 		
 			{
 				"command": "edgeDeveloperTools.enmasse.destroy",
 				"title": "Remove Enmasse Messaging core from cluster",
@@ -86,6 +92,11 @@
 				"title": "Make new enmasse IoT project",
 				"category": "EdgeDeveloperTools"
 			}, 
+			{
+				"command": "edgeDeveloperTools.kafka.bridge",
+				"title": "Setup Kafka HTTP Bridge",
+				"category": "EdgeDeveloperTools"
+			},  
 			{
 				"command": "edgeDeveloperTools.kafka.setup",
 				"title": "Setup Kafka Messaging Core",
@@ -112,6 +123,11 @@
 				"category": "EdgeDeveloperTools"
 			}, 
 			{
+				"command": "edgeDeveloperTools.knative.service.status",
+				"title": "Get Status of Knative Service",
+				"category": "EdgeDeveloperTools"
+			}, 
+			{
 				"command": "edgeDeveloperTools.knative.service.destroy",
 				"title": "Remove a knative service",
 				"category": "EdgeDeveloperTools"
@@ -128,12 +144,12 @@
 			}, 
 			{
 				"command": "edgeDeveloperTools.tensorflowServing.setup",
-				"title": "Remove a knative source",
+				"title": "Setup Tensorflow Serving",
 				"category": "EdgeDeveloperTools"
 			}, 
 			{
 				"command": "edgeDeveloperTools.tensorflowServing.destroy",
-				"title": "Remove a knative source",
+				"title": "Remove Tensorflow Serving",
 				"category": "EdgeDeveloperTools"
 			}
 		],

@@ -77,7 +77,7 @@ export class ToolsConfig {
             }
         }
         
-        detectedVersion = "0.2.0";
+        detectedVersion = "0.3.0";
         return detectedVersion;
     }
 

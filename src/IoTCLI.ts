@@ -61,8 +61,16 @@ export class Command{
         return 'IoTCLI knative destroy'; 
     }
 
-    static knativeService(serviceName:string, nameSpace:string = 'knative-eventing'):string{
-        return `IoTCLI knative service ${serviceName} -n ${nameSpace}`; 
+    static knativeService(serviceName:string, nameSpace:string = 'knative-eventing',cephEndpoint?, cephAccessKey?,cephSecretKey?):string{
+        if (serviceName === "video-analytics" || serviceName === "video-serving"){
+            return `IoTCLI knative service ${serviceName} -n ${nameSpace} --cephEndpoint ${cephEndpoint} --cephAccessKey ${cephAccessKey} --cephSecretKey ${cephSecretKey}`;
+        }else {
+            return `IoTCLI knative service ${serviceName} -n ${nameSpace}`; 
+        }
+    }
+
+    static knativeServiceStatus(serviceName:string, nameSpace:string){
+        return `IoTCLI knative service ${serviceName} -n ${nameSpace} --status`;
     }
 
     static knativeServiceDestroy(serviceName:string, nameSpace:string = 'knative-eventing'):string{

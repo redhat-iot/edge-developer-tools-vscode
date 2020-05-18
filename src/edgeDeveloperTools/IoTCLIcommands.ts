@@ -65,6 +65,12 @@ export class IoTCLICommands {
         const namespace =  await vscode.window.showInputBox({prompt: "Enter a namespace that contains the Kafka messaging core, defaults to 'kafka'"});
         return(await IoTCLICommands.iotcli.executeInTerminal(Command.kafkaDestroy(namespace)));
     }
+
+    @vsCommand("edgeDeveloperTools.kafka.bridge")
+    public async kafkaBridge():Promise<void>{
+        const namespace =  await vscode.window.showInputBox({prompt: "Enter a namespace that contains the Kafka messaging core, defaults to 'kafka'"});
+        return(await IoTCLICommands.iotcli.executeInTerminal(Command.kafkaBridge(namespace)));
+    }
     
     @vsCommand("edgDeveloperTools.knative.destroy")
     public async knativeDestroy():Promise<void>{
@@ -81,8 +87,22 @@ export class IoTCLICommands {
     @vsCommand("edgeDeveloperTools.knative.service")
     public async knativeService():Promise<void>{
         const serviceName =  await vscode.window.showInputBox({prompt: "Enter the knative service you would like to deploy"});
-        const namespace =  await vscode.window.showInputBox({prompt: "Enter the namespace to deploy the Knative Service: " + serviceName});
-        return(await IoTCLICommands.iotcli.executeInTerminal(Command.knativeService(serviceName, namespace)));
+        const namespace =  await vscode.window.showInputBox({prompt: "Enter the namespace to deploy the Knative Service: " + serviceName, ignoreFocusOut:true} );
+        if(serviceName === "video-analytics" || serviceName === "video-serving"){ 
+            const cephEndpoint =  await vscode.window.showInputBox({prompt: "Enter the ceph endpoint for the Knative Service: " + serviceName, ignoreFocusOut:true});
+            const cephAccessKey =  await vscode.window.showInputBox({prompt: "Enter the ceph access key the Knative Service: " + serviceName, ignoreFocusOut:true});
+            const cephSecretKey =  await vscode.window.showInputBox({prompt: "Enter the ceph secret key the Knative Service: " + serviceName, ignoreFocusOut:true});
+            return(await IoTCLICommands.iotcli.executeInTerminal(Command.knativeService(serviceName, namespace, cephEndpoint,cephAccessKey, cephSecretKey)));
+        }else{
+            return(await IoTCLICommands.iotcli.executeInTerminal(Command.knativeService(serviceName, namespace)));
+        }
+    }
+    @vsCommand("edgeDeveloperTools.knative.service.status")
+    public async knativeServiceStatus():Promise<void>{ 
+        const serviceName =  await vscode.window.showInputBox({prompt: "Enter the knative service you would like to deploy"});
+        const namespace =  await vscode.window.showInputBox({prompt: "Enter the namespace to deploy the Knative Service: " + serviceName, ignoreFocusOut:true} );
+        return(await IoTCLICommands.iotcli.executeInTerminal(Command.knativeServiceStatus(serviceName, namespace)));
+
     }
 
     @vsCommand("edgeDeveloperTools.knative.service.destroy")
