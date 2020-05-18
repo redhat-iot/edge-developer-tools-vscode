@@ -4,7 +4,7 @@
 	"description": "A set of Developer tools to make creating applications at the edge easier. Uses the functionality built into the IoTCLI command line interface",
 	"version": "0.0.1",
 	"repository": "github.com/redhat-iot/edge-developer-tools-vscode",
-	"publisher": "astoycos",
+	"publisher": "redhat-iot",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
