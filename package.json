@@ -10,8 +10,6 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:edgeDeveloperTools.helloWorld",
-		"onView:edgeTools", 
 		"onCommand:edgeDeveloperTools.ceph.setup",
 		"onCommand:edgeDeveloperTools.ceph.user",
 		"onCommand:edgeDeveloperTools.ceph.destroy", 
@@ -37,21 +35,7 @@
 	],
 	"main": "./out/src/extension.js",
 	"contributes": {
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "package-explorer",
-					"title": "Package Explorer",
-					"icon": "media/Icon-Red_Hat-Arrows-Interoperability-A-Black-RGB.svg"
-				}
-			]
-		},
 		"commands": [
-			{
-				"command": "edgeDeveloperTools.helloWorld",
-				"title": "Say Hello",
-				"category": "EdgeDeveloperTools"
-			}, 
 			{
 				"command": "edgeDeveloperTools.login",
 				"title": "Login to Cluster",

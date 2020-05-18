@@ -1,6 +1,5 @@
 import { IoTCLIImpl, IoTCLI, Command} from "../IoTCLI";
 import { vsCommand } from '../vscommand';
-import * as cliInstance from '../cli';
 import * as vscode from "vscode";
 
 export class IoTCLICommands { 
